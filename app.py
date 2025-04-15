@@ -17,9 +17,9 @@ import re
 app = Flask(__name__)
 
 configuration = Configuration(
-    access_token='ax+UNSVoMT6NT9tLl9RNMj9HYiqZSIV9ZxB2sw3C8re5y6/laRU9KpoIWEyUGCYYN48v8v9RfhS9rkcgZZjRu+ewlI6kCN/fHF+Gr2K3bRXfA6Z0ut4maB/04mWoztSCu3oDRLZFNYni0CAn+gCE9wdB04t89/1O/w1cDnyilFU='
+    access_token='8zFnGQiVtGuRdmZSV4xTjVgOFfZGww/WfO1V0LqYo5cQD4EKN9dMOPBwkU2OzIxwvkvOUD5k4gKbCLv0z2OKM5HDVlztWwujDtGLtRZ8DTDkr9+71clA3pqYtzYLulJNS/qLREqQZIpd1ij81dTOXAdB04t89/1O/w1cDnyilFU='
 )
-handler = WebhookHandler('2111a45fd5765e36107286d97d50c409')
+handler = WebhookHandler('39127f50f8d05186e6e6a7cc033b2ead')
 
 boss_user_id = 'Uf1b7605903b636f92b033cc71d2a9912'
 
