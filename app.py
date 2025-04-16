@@ -221,13 +221,6 @@ def handle_message(event):
         if text in auto_handled_keywords:
             return
 
-        line_bot_api.reply_message(
-            ReplyMessageRequest(
-                reply_token=event.reply_token,
-                messages=[TextMessage(text="[@票速通 通知您]\n請點選下方選單服務，若有其他疑問請私訊一次就好！\n請稍等會馬上回覆您！！！")]
-            )
-        )
-
         if boss_user_id:
             try:
                 line_bot_api.push_message(
