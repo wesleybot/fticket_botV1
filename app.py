@@ -40,7 +40,7 @@ def callback():
     return 'OK'
 
 # === 建立 Bubble 卡片 ===
-def create_bubble(title, date, location, price, system, image_url, artist_keyword):
+def create_bubble(title, date, location, price, system, image_url, artist_keyword, badge_text="NEW"):
     return {
         "type": "bubble",
         "header": {
@@ -71,7 +71,7 @@ def create_bubble(title, date, location, price, system, image_url, artist_keywor
                             "contents": [
                                 {
                                     "type": "text",
-                                    "text": "NEW",
+                                    "text": badge_text,
                                     "size": "xs",
                                     "color": "#ffffff",
                                     "align": "center",
@@ -199,10 +199,10 @@ def handle_message(event):
                 "type": "carousel",
                 "contents": []
             }
-            flex_content["contents"].append(create_bubble("國泰世華銀行\n伍佰 ＆ China Blue Rock Star2演唱會-高雄站", "2025.11.22 (六) 19:30\n2025.11.23 (日) 19:00", "Comimg soon...", "Comimg soon...", "拓元售票系統", "https://img5.uploadhouse.com/fileuploads/31934/319346856d24e3358b522bc1d8aa65825c41d420.png", "伍佰"))
-            flex_content["contents"].append(create_bubble("玉山銀行\n五月天25週年巡迴歌迷過生日-台北站", "2025.07.12(六)18:00", "臺北流行音樂中心表演廳", "Comimg soon...", "拓元售票系統", "https://img4.uploadhouse.com/fileuploads/31934/319347049577ac603847741dbf746d7eedf3c057.png", "五月天"))
-            flex_content["contents"].append(create_bubble("2025 KAI SOLO CONCERT TOUR <KAION> IN TAIPEI", "2025.07.12(六)18:00", "臺北流行音樂中心表演廳", "Comimg soon...", "拓元售票系統", "https://img8.uploadhouse.com/fileuploads/31934/31934708f74031421c828781caaa86f02cbc7495.png", "KAI"))
-            flex_content["contents"].append(create_bubble("2025 HA HYUN SANG FAN CONCERT ＜FINE DAY WITH HYUN SANG＞ IN TAIPEI", "2025.05.17(六)19:00", "Legacy MAX", "TWD 4,600 / 4,200 / 3,800 / 2,800", "拓元售票系統", "https://img5.uploadhouse.com/fileuploads/31934/319347154ae5bf4508c3e55e0b830e5ad9368eb3.png", "HA HYUN SANG"))
+            flex_content["contents"].append(create_bubble("國泰世華銀行\n伍佰 ＆ China Blue Rock Star2演唱會-高雄站", "2025.11.22 (六) 19:30\n2025.11.23 (日) 19:00", "Comimg soon...", "Comimg soon...", "拓元售票系統", "https://img5.uploadhouse.com/fileuploads/31934/319346856d24e3358b522bc1d8aa65825c41d420.png", "伍佰", badge_text="HOT🔥"))
+            flex_content["contents"].append(create_bubble("玉山銀行\n五月天25週年巡迴歌迷過生日-台北站", "2025.07.12(六)18:00", "臺北流行音樂中心表演廳", "Comimg soon...", "拓元售票系統", "https://img4.uploadhouse.com/fileuploads/31934/319347049577ac603847741dbf746d7eedf3c057.png", "五月天", badge_text="HOT🔥"))
+            flex_content["contents"].append(create_bubble("2025 KAI SOLO CONCERT TOUR <KAION> IN TAIPEI", "2025.07.12(六)18:00", "臺北流行音樂中心表演廳", "Comimg soon...", "拓元售票系統", "https://img8.uploadhouse.com/fileuploads/31934/31934708f74031421c828781caaa86f02cbc7495.png", "KAI", badge_text="HOT🔥"))
+            flex_content["contents"].append(create_bubble("2025 HA HYUN SANG FAN CONCERT ＜FINE DAY WITH HYUN SANG＞ IN TAIPEI", "2025.05.17(六)19:00", "Legacy MAX", "TWD 4,600 / 4,200 / 3,800 / 2,800", "拓元售票系統", "https://img5.uploadhouse.com/fileuploads/31934/319347154ae5bf4508c3e55e0b830e5ad9368eb3.png", "HA HYUN SANG", badge_text="HOT🔥"))
             flex_content["contents"].append(create_bubble("蔡依林演唱會", "Comimg soon...", "Comimg soon...", "Coming soon...", "Comimg soon...", "https://img7.uploadhouse.com/fileuploads/31934/319347074ebade93a4a6310dec72f08996dc2af1.png", "蔡依林"))
 
             _safe_reply(line_bot_api, event.reply_token,
@@ -227,11 +227,6 @@ def handle_message(event):
             )
         except Exception as e:
             print(f"推播老闆失敗：{e}")
-
-@handler.add(FollowEvent)
-def handle_follow(event):
-    print(f"[FOLLOW] userId：{event.source.user_id}")
-
 
 # === 安全回覆封裝 ===
 def _safe_reply(line_bot_api, reply_token, message):
