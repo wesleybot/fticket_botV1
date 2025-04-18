@@ -21,7 +21,7 @@ configuration = Configuration(
 )
 handler = WebhookHandler('39127f50f8d05186e6e6a7cc033b2ead')
 
-boss_user_id = 'Uf1b7605903b636f92b033cc71d2a9912'
+boss_user_id = 'U016da51eeb42b435ebe3a22442c97bb1'
 manager_user_ids = {boss_user_id}  # 只有這個人能開關自動回應
 
 # === 全域變數 ===
