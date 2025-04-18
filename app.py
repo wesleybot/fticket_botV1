@@ -228,6 +228,11 @@ def handle_message(event):
         except Exception as e:
             print(f"推播老闆失敗：{e}")
 
+@handler.add(FollowEvent)
+def handle_follow(event):
+    print(f"[FOLLOW] userId：{event.source.user_id}")
+
+
 # === 安全回覆封裝 ===
 def _safe_reply(line_bot_api, reply_token, message):
     try:
