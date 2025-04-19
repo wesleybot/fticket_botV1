@@ -84,8 +84,8 @@ def create_bubble(title, date, location, price, system, image_url, artist_keywor
                             "offsetStart": "18px",
                             "offsetTop": "18px",
                             "cornerRadius": "100px",
-                            "width": "48px",
-                            "height": "25px"
+                            "width": "72px",
+                            "height": "28px"
                         }
                     ]
                 }
