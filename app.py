@@ -210,13 +210,13 @@ def handle_message(event):
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
-                "國泰世華銀行\n伍佰 ＆ China Blue Rock Star2演唱會-高雄站",
-                "11.22 (六) 19:30\n11.23 (日) 19:00", 
-                "Comimg soon...",
+                "叮噹Della《夜遊 A Night Tour》小巨蛋未眠巡迴演唱會",
+                "11.15 (六)19:00", 
+                "台北小巨蛋",
                 "Comimg soon...",
                 "拓元售票系統",
-                "https://img5.uploadhouse.com/fileuploads/31934/319346856d24e3358b522bc1d8aa65825c41d420.png",
-                "伍佰",
+                "https://img4.uploadhouse.com/fileuploads/31944/31944284f2197239591b4b6e88cf9578095937fc.png",
+                "叮噹",
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
@@ -240,23 +240,13 @@ def handle_message(event):
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
-                "2025 KAI SOLO CONCERT TOUR <KAION> IN TAIPEI", 
-                "2025.07.12(六)18:00", 
-                "臺北流行音樂中心表演廳", 
-                "Comimg soon...", 
-                "拓元售票系統", 
-                "https://img8.uploadhouse.com/fileuploads/31934/31934708f74031421c828781caaa86f02cbc7495.png", 
-                "KAI", 
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "2025 HA HYUN SANG FAN CONCERT ＜FINE DAY WITH HYUN SANG＞ IN TAIPEI", 
-                "2025.05.17(六)19:00", 
-                "Legacy MAX", 
-                "TWD 4,600 / 4,200 / 3,800 / 2,800", 
-                "拓元售票系統", 
-                "https://img5.uploadhouse.com/fileuploads/31934/319347154ae5bf4508c3e55e0b830e5ad9368eb3.png", 
-                "HA HYUN SANG", 
+                "國泰世華銀行\n伍佰 ＆ China Blue Rock Star2演唱會-高雄站",
+                "11.22 (六) 19:30\n11.23 (日) 19:00", 
+                "Comimg soon...",
+                "Comimg soon...",
+                "拓元售票系統",
+                "https://img5.uploadhouse.com/fileuploads/31934/319346856d24e3358b522bc1d8aa65825c41d420.png",
+                "伍佰",
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
