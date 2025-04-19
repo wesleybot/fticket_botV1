@@ -200,8 +200,19 @@ def handle_message(event):
                 "contents": []
             }
             flex_content["contents"].append(create_bubble(
+                "G-DRAGON 2025 WORLD TOUR【Übermensch】IN TAIPEI",
+                "7/12（六）、7/13（日）", 
+                "台北小巨蛋",
+                "Comimg soon...",
+                "Comimg soon...",
+                "https://img3.uploadhouse.com/fileuploads/31944/31944283d3c766e70c953dc0af2b452315890ef6.png",
+                "GD",
+                badge_text="HOT🔥"
+            ))
+            flex_content["contents"].append(create_bubble(
                 "國泰世華銀行\n伍佰 ＆ China Blue Rock Star2演唱會-高雄站",
-                "11.22 (六) 19:30\n11.23 (日) 19:00", "Comimg soon...",
+                "11.22 (六) 19:30\n11.23 (日) 19:00", 
+                "Comimg soon...",
                 "Comimg soon...",
                 "拓元售票系統",
                 "https://img5.uploadhouse.com/fileuploads/31934/319346856d24e3358b522bc1d8aa65825c41d420.png",
@@ -211,7 +222,8 @@ def handle_message(event):
             flex_content["contents"].append(create_bubble(
                 "玉山銀行\n五月天5525：回到最初 順時光之旅", 
                 "6/27（五）、29（日）、7/5（六）、11（五）", 
-                "臺北流行音樂中心表演廳", "Comimg soon...", 
+                "臺北流行音樂中心表演廳", 
+                "Comimg soon...", 
                 "拓元售票系統", 
                 "https://img4.uploadhouse.com/fileuploads/31934/319347049577ac603847741dbf746d7eedf3c057.png", 
                 "五月天", 
