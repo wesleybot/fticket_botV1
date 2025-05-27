@@ -201,13 +201,13 @@ def handle_message(event):
             }
             flex_content["contents"].append(create_bubble(
                 "G-DRAGON 2025 WORLD TOUR【Übermensch】IN TAIPEI",
-                "7/12（六）、7/13（日）", 
+                "7/11（五）", 
                 "台北小巨蛋",
-                "Comimg soon...",
-                "Comimg soon...",
-                "https://img3.uploadhouse.com/fileuploads/31944/31944283d3c766e70c953dc0af2b452315890ef6.png",
+                "$8980 / $7980 / $7880 / $7280 / $6680 / $5580 / $4580 / $3580 / $800",
+                "KKTIX",
+                "https://img8.uploadhouse.com/fileuploads/31980/3198036843f1520e89815a0cd8dc71791758ffce.png",
                 "GD",
-                badge_text="HOT🔥"
+                badge_text="加場！🔥"
             ))
             flex_content["contents"].append(create_bubble(
                 "《Blackpink World Tour【Deadline】In Kaohsiung》",
@@ -217,36 +217,6 @@ def handle_message(event):
                 "Comimg soon...",
                 "https://img6.uploadhouse.com/fileuploads/31980/3198036627832f485ac579d704e3f590f8bd4bda.png",
                 "GD",
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "叮噹Della《夜遊 A Night Tour》小巨蛋未眠巡迴演唱會",
-                "11.15 (六)19:00", 
-                "台北小巨蛋",
-                "Comimg soon...",
-                "拓元售票系統",
-                "https://img4.uploadhouse.com/fileuploads/31944/31944284f2197239591b4b6e88cf9578095937fc.png",
-                "叮噹",
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "玉山銀行\n五月天5525：回到最初 順時光之旅", 
-                "6/27（五）、29（日）、7/5（六）、11（五）", 
-                "臺北流行音樂中心表演廳", 
-                "Comimg soon...", 
-                "拓元售票系統", 
-                "https://img4.uploadhouse.com/fileuploads/31934/319347049577ac603847741dbf746d7eedf3c057.png", 
-                "五月天", 
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "玉山銀行\n五月天5525+1：倒轉時間 逆時光之行", 
-                "6/28、7/4、7/6、7/12", 
-                "臺北流行音樂中心表演廳", 
-                "Comimg soon...", 
-                "拓元售票系統", 
-                "https://img4.uploadhouse.com/fileuploads/31934/319347049577ac603847741dbf746d7eedf3c057.png", 
-                "五月天", 
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
@@ -260,6 +230,16 @@ def handle_message(event):
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
+                "鄧紫棋演唱會",
+                "Comimg soon...", 
+                "Comimg soon...",
+                "Comimg soon...",
+                "Comimg soon...",
+                "https://img1.uploadhouse.com/fileuploads/31980/31980371b9850a14e08ec5f39c646f7b5068e008.png",
+                "鄧紫棋",
+                badge_text="即將來🔥"
+            ))
+            flex_content["contents"].append(create_bubble(
                 "蔡依林演唱會", 
                 "Comimg soon...", 
                 "Comimg soon...", 
@@ -267,7 +247,7 @@ def handle_message(event):
                 "Comimg soon...", 
                 "https://img7.uploadhouse.com/fileuploads/31934/319347074ebade93a4a6310dec72f08996dc2af1.png", 
                 "蔡依林",
-                badge_text="即將來臨🔥"
+                badge_text="即將來🔥"
             ))
 
             _safe_reply(line_bot_api, event.reply_token,
