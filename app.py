@@ -210,6 +210,16 @@ def handle_message(event):
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
+                "《Blackpink World Tour【Deadline】In Kaohsiung》",
+                "10/18（六）、10/19（日）", 
+                "高雄世運",
+                "Comimg soon...",
+                "Comimg soon...",
+                "https://img6.uploadhouse.com/fileuploads/31980/3198036627832f485ac579d704e3f590f8bd4bda.png",
+                "GD",
+                badge_text="HOT🔥"
+            ))
+            flex_content["contents"].append(create_bubble(
                 "叮噹Della《夜遊 A Night Tour》小巨蛋未眠巡迴演唱會",
                 "11.15 (六)19:00", 
                 "台北小巨蛋",
