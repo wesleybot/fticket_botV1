@@ -200,23 +200,23 @@ def handle_message(event):
                 "contents": []
             }
             flex_content["contents"].append(create_bubble(
-                "G-DRAGON 2025 WORLD TOUR【Übermensch】IN TAIPEI",
-                "7/11（五）", 
-                "台北小巨蛋",
-                "$8980 / $7980 / $7880 / $7280 / $6680 / $5580 / $4580 / $3580 / $800",
-                "KKTIX",
-                "https://img8.uploadhouse.com/fileuploads/31980/3198036843f1520e89815a0cd8dc71791758ffce.png",
-                "GD",
-                badge_text="加場！🔥"
+                "TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG",
+                "Comimg soon...", 
+                "Comimg soon...",
+                "Comimg soon...",
+                "Comimg soon...",
+                "https://img9.uploadhouse.com/fileuploads/32011/32011699f3f6ed545f4c10e2c725a17104ab2e9c.png",
+                "TWICE",
+                badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
                 "《Blackpink World Tour【Deadline】In Kaohsiung》",
                 "10/18（六）、10/19（日）", 
                 "高雄世運",
                 "Comimg soon...",
-                "Comimg soon...",
+                "拓元售票系統",
                 "https://img6.uploadhouse.com/fileuploads/31980/3198036627832f485ac579d704e3f590f8bd4bda.png",
-                "GD",
+                "BP",
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
