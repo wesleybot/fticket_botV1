@@ -260,7 +260,7 @@ def handle_message(event):
 
         # 如果 auto_reply 開啟，發送預設訊息
         if auto_reply:
-            _safe_reply(line_bot_api, event.reply_token, "[@票速通 通知您]\n請點選下方選單服務，若有其他疑問請私訊一次就好！\n請稍等會馬上回覆您！！！")
+            _safe_reply(line_bot_api, event.reply_token, "[@票速通 通知您]\n請點選下方選單服務，若有其他疑問請私訊一次就好！\n若是詢問BlackPink演唱會或是TWICE演唱會，請直接告知想要的票價。系統會直接排隊，請不要洗頻！\n目前全部出售，有刷到，系統會通知，您所預約的票價，明日有也會第一時間派送消息。\n\n再次強調，洗頻三次將封鎖！")
 
         # 無論如何推播給老闆
         try:
