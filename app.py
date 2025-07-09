@@ -215,7 +215,7 @@ def handle_message(event):
                 "臺北小巨蛋",
                 "4,280元、3,880元、3,480元、2,880元、1,880元、1,280元、800元",
                 "KKTIX",
-                "https://img0.uploadhouse.com/fileuploads/32024/320248008a66f80d992df87a252663b9077bdb8c.png",
+                "https://img7.uploadhouse.com/fileuploads/32041/320416079d76281470f509aafbfc8409d9141f90.png",
                 "周興哲",
                 badge_text="HOT🔥"
             ))
