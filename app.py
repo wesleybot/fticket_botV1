@@ -210,73 +210,23 @@ def handle_message(event):
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
-                "SEVENTEEN HOSHI X WOOZI「豪雨」小分隊台北演唱會",
-                "7月26日(六) 18:00、年7月27日(日)17:00", 
-                "Comimg soon...",
-                "Comimg soon...",
-                "Comimg soon...",
-                "https://img9.uploadhouse.com/fileuploads/32024/32024799b90bf5a33f989a9cd819fb76eddfcdd1.png",
-                "SEVENTEEN",
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "Energy《ALL IN 全面進擊》演唱會 高雄站",
-                "9/6 (六) 19:30、9/7 (日) 18:00", 
-                "高雄巨蛋",
-                "Comimg soon...",
-                "拓元售票系統",
+                "台新銀行周興哲Odyssey旅程巡迴演唱會 臺北返場",
+                "2025/9/26(五)-2025/9/28(日)，19:30正式開唱", 
+                "臺北小巨蛋",
+                "4,280元、3,880元、3,480元、2,880元、1,880元、1,280元、800元",
+                "KKTIX",
                 "https://img0.uploadhouse.com/fileuploads/32024/320248008a66f80d992df87a252663b9077bdb8c.png",
-                "Energy",
+                "周興哲",
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
-                "周華健 少年的奇幻之旅3.0巡迴演唱會【台北場】",
-                "9月20日(六) 19:30 PM", 
-                "台北小巨蛋",
-                "4280 / 3980 / 3680 / 3280 / 2880 / 2480 / 1880 / 800",
+                "家家 月部落 Fly to the moon 你給我的月不落現場",
+                "9.27 Sat. 19:00", 
+                "Legacy Taipei 音樂展演空間",
+                "NT. 1800（全區座席）/ NT. 900（身障席）",
                 "拓元售票系統",
-                "https://img1.uploadhouse.com/fileuploads/32024/3202480131eef05bfe0a9f7b8137abb3dc51ddbd.png",
-                "周華健",
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "周華健 少年的奇幻之旅3.0巡迴演唱會【高雄場】",
-                "11月29日(六) 18:00 PM", 
-                "高雄巨蛋",
-                "4280 / 3980 / 3680 / 3280 / 2880 / 2480 / 1880 / 800",
-                "拓元售票系統",
-                "https://img1.uploadhouse.com/fileuploads/32024/3202480131eef05bfe0a9f7b8137abb3dc51ddbd.png",
-                "周華健",
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "2025 BAEKHYUN WORLD TOUR ＜Reverie＞ in TAIPEI",
-                "06/22 (日) 12 PM (TST)", 
-                "林口體育館",
-                "NT$ 6,380 / 5,580 / 4,880 / 4,280 / 3,680 / 身障席：NT$ 2,795",
-                "拓元售票系統",
-                "https://img2.uploadhouse.com/fileuploads/32024/3202480268c932e53a95431d02226688c83376c4.png",
-                "BAEKHYUN",
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "2025 FireBall Fest. 火球祭",
-                "11/22 Sat. - 11/23 Sun.", 
-                "樂天桃園棒球場",
-                "詳情票價請見官網",
-                "拓元售票系統",
-                "https://img4.uploadhouse.com/fileuploads/32024/3202480429886920167f0a7f3e69a8528d95e768.png",
-                "火球祭",
-                badge_text="HOT🔥"
-            ))
-            flex_content["contents"].append(create_bubble(
-                "《Blackpink World Tour【Deadline】In Kaohsiung》",
-                "10/18（六）、10/19（日）", 
-                "高雄世運",
-                "Comimg soon...",
-                "拓元售票系統",
-                "https://img6.uploadhouse.com/fileuploads/31980/3198036627832f485ac579d704e3f590f8bd4bda.png",
-                "BP",
+                "https://img4.uploadhouse.com/fileuploads/32041/32041604c5fee787f6b7ec43d0d3fe8991ae995d.png",
+                "家家",
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
@@ -287,6 +237,16 @@ def handle_message(event):
                 "拓元售票系統",
                 "https://img5.uploadhouse.com/fileuploads/31934/319346856d24e3358b522bc1d8aa65825c41d420.png",
                 "伍佰",
+                badge_text="HOT🔥"
+            ))
+            flex_content["contents"].append(create_bubble(
+                "《Blackpink World Tour【Deadline】In Kaohsiung》",
+                "10/18（六）、10/19（日）", 
+                "高雄世運",
+                "Comimg soon...",
+                "拓元售票系統",
+                "https://img6.uploadhouse.com/fileuploads/31980/3198036627832f485ac579d704e3f590f8bd4bda.png",
+                "BP",
                 badge_text="HOT🔥"
             ))
             flex_content["contents"].append(create_bubble(
@@ -320,7 +280,7 @@ def handle_message(event):
 
         # 如果 auto_reply 開啟，發送預設訊息
         if auto_reply:
-            _safe_reply(line_bot_api, event.reply_token, "[@票速通 通知您] 目前無人在線中，請稍等。\n 問題傳送一次即可，馬上回來回覆您！\n\n再次強調，洗頻三次將封鎖！")
+            _safe_reply(line_bot_api, event.reply_token, "[@票速通 通知您] 小編7/12-7/17不在，若有任何事情，請先留言即可。\n The editor was away from home from 7/12 to 7/17. If you have any questions, please leave a message first.\n 問題傳送一次即可，馬上回來回覆您！\n\n再次強調，洗頻三次將封鎖！")
         # 無論如何推播給老闆
         try:
             line_bot_api.push_message(
