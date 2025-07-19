@@ -1,6 +1,7 @@
 # app.py — 票速通 LINE Bot  (2025-07-19)
 
-import os, logging
+import os
+import logging
 from flask import Flask, request, abort
 from linebot.v3 import WebhookHandler
 from linebot.v3.exceptions import InvalidSignatureError
@@ -25,27 +26,50 @@ app = Flask(__name__)
 # ────────────────────────────
 # LINE SDK  (環境變數)
 # ────────────────────────────
-ACCESS_TOKEN   = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
+ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
-configuration  = Configuration(access_token=ACCESS_TOKEN)
-handler        = WebhookHandler(CHANNEL_SECRET)
+configuration = Configuration(access_token=ACCESS_TOKEN)
+handler = WebhookHandler(CHANNEL_SECRET)
 
-boss_user_id     = os.environ.get("BOSS_USER_ID", "")
+boss_user_id = os.environ.get("BOSS_USER_ID", "")
 manager_user_ids = {boss_user_id} if boss_user_id else set()
 
 # ────────────────────────────
 # 條款常數
 # ────────────────────────────
-TOS_VERSION      = "v1"
-TOS_PDF_URL      = "https://fticket-botv1.onrender.com/static/tos_privacy_v1.pdf"
+TOS_VERSION = "v1"
+TOS_PDF_URL = "https://fticket-botv1.onrender.com/static/tos_privacy_v1.pdf"
 TOS_CONFIRM_TEXT = f"我同意票速通條款{TOS_VERSION}"
 
 # ────────────────────────────
 # 關鍵字回應
 # ────────────────────────────
 KEYWORD_REPLIES = {
-    "[!!!]售票規則是甚麼？": "【@票速通 售票規則】 …",
-    "[!!!]高鐵票搶票":      "【@票速通 高鐵訂票委託單】 …",
+    "[!!!]售票規則是甚麼？": (
+        "【@票速通 售票規則】\n"
+        "🍀🍀🍀本官方成立初心「幫追星人買到演唱會門票」一律以「誠信」為主🍀🍀🍀\n\n"
+        "若您想詢問演唱會場次，請按選單【演唱會代操搶票登記】。\n"
+        "若有其他問題，歡迎洽詢官方賴 @票速通。\n\n"
+        "Q：代操費用怎麼算？\n"
+        "A：所有代操以「一筆委託」計算，而非一張票計費。\n"
+        "Q：票款與代操費如何支付？\n"
+        "A：若售票系統可 ATM 付款，我們將提供官方匯款帳號。\n"
+        "Q：如何證明真的搶到票？\n"
+        "A：主頁、IG、Threads 皆有搶票紀錄貼文！\n"
+        "Q：取票方式？\n"
+        "A：KKTIX 通常可直接領；拓元多為開場前五天領票。\n"
+        "！！！一律以誠信為本！！！"
+    ),
+    "[!!!]高鐵票搶票": (
+        "【@票速通 高鐵訂票委託單】\n"
+        "出發站：\n"
+        "抵達站：\n"
+        "出發日期：\n"
+        "出發時間：\n"
+        "張數（全票為主）：\n"
+        "車次需求（可留空）：\n\n"
+        "請依上列格式填寫，小助手將盡速回覆，謝謝！"
+    ),
     "[!!!]演唱會代操": (
         "😍 目前可預約 2025 演唱會如下：😍\n"
         "➣ TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG\n"
@@ -55,7 +79,7 @@ KEYWORD_REPLIES = {
         "➣ 鄧紫棋 演唱會\n"
         "➣ 蔡依林 演唱會（預計年底）\n\n"
         "✓ 搶票成功後才收代操費（全網最低價！）\n"
-        "請點『填寫預訂單』並輸入委託資訊，小助手將回覆。"
+        "請點選選單「演唱會代操」並填寫委託單，小助手將回覆。"
     ),
 }
 
@@ -63,18 +87,21 @@ KEYWORD_REPLIES = {
 # 狀態
 # ────────────────────────────
 accepted_terms_users: set[str] = set()
-submitted_users: set[str]      = set()
+submitted_users: set[str] = set()
 auto_reply = False
 
 # ═════════════════════════════════════════════
 # Bubble 產生器
 # ═════════════════════════════════════════════
+
+
 def _one_row(label: str, value: str):
     return {"type": "box", "layout": "baseline", "contents": [
             {"type": "text", "text": label, "size": "sm",
              "color": "#aaaaaa", "flex": 1},
             {"type": "text", "text": value, "size": "sm",
              "color": "#666666", "wrap": True, "flex": 4}]}
+
 
 def create_bubble(title, date, location, price, system,
                   image_url, artist_keyword, badge_text="NEW"):
@@ -115,6 +142,7 @@ def create_bubble(title, date, location, price, system,
                 "style": "primary", "color": "#00A4C1"}]}
     }
 
+
 CONCERT_BUBBLES = [
     create_bubble("TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG",
                   "Coming soon…", "Coming soon…", "Coming soon…", "Coming soon…",
@@ -137,10 +165,12 @@ CONCERT_BUBBLES = [
 # ────────────────────────────
 # Webhook 入口
 # ────────────────────────────
+
+
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
-    body      = request.get_data(as_text=True)
+    body = request.get_data(as_text=True)
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -150,6 +180,8 @@ def callback():
 # ────────────────────────────
 # 條款 Bubble
 # ────────────────────────────
+
+
 def _send_terms(api: MessagingApi, reply_token: str):
     bubble = {
         "type": "bubble",
@@ -177,11 +209,13 @@ def _send_terms(api: MessagingApi, reply_token: str):
 # ────────────────────────────
 # MessageEvent
 # ────────────────────────────
+
+
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event: MessageEvent):
     global auto_reply
     text = event.message.text.strip()
-    uid  = event.source.user_id
+    uid = event.source.user_id
 
     with ApiClient(configuration) as cli:
         api = MessagingApi(cli)
@@ -241,6 +275,8 @@ def handle_message(event: MessageEvent):
 # ────────────────────────────
 # 共用：安全回覆
 # ────────────────────────────
+
+
 def _safe_reply(api: MessagingApi, reply_token: str, message):
     try:
         if isinstance(message, str):
@@ -252,6 +288,7 @@ def _safe_reply(api: MessagingApi, reply_token: str, message):
                 reply_token=reply_token, messages=[message]))
     except Exception as e:
         logging.error(f"[Reply 失敗] {e}")
+
 
 # ────────────────────────────
 # Run (本地測試)
