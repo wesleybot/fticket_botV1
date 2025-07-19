@@ -25,15 +25,11 @@ app = Flask(__name__)
 # ─────────────────────────────────────────────
 # LINE SDK 設定（建議改用環境變數）
 # ─────────────────────────────────────────────
-configuration = Configuration(
-    access_token=os.environ.get(
-        "8zFnGQiVtGuRdmZSV4xTjVgOFfZGww/WfO1V0LqYo5cQD4EKN9dMOPBwkU2OzIxwvkvOUD5k4gKbCLv0z2OKM5HDVlztWwujDtGLtRZ8DTDkr9+71clA3pqYtzYLulJNS/qLREqQZIpd1ij81dTOXAdB04t89/1O/w1cDnyilFU=",
-        "YOUR_LONG_LIVED_ACCESS_TOKEN"
-    )
-)
-handler = WebhookHandler(
-    os.environ.get("39127f50f8d05186e6e6a7cc033b2ead", "YOUR_CHANNEL_SECRET")
-)
+ACCESS_TOKEN = os.environ["8zFnGQiVtGuRdmZSV4xTjVgOFfZGww/WfO1V0LqYo5cQD4EKN9dMOPBwkU2OzIxwvkvOUD5k4gKbCLv0z2OKM5HDVlztWwujDtGLtRZ8DTDkr9+71clA3pqYtzYLulJNS/qLREqQZIpd1ij81dTOXAdB04t89/1O/w1cDnyilFU="]
+CHANNEL_SECRET = os.environ["39127f50f8d05186e6e6a7cc033b2ead"]
+
+configuration = Configuration(access_token=ACCESS_TOKEN)
+handler = WebhookHandler(CHANNEL_SECRET)
 
 boss_user_id = os.environ.get(
     "BOSS_USER_ID", "U016da51eeb42b435ebe3a22442c97bb1"
