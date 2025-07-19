@@ -74,62 +74,72 @@ def callback():
 # ─────────────────────────────────────────────
 
 
-def _send_terms(line_bot_api, reply_token=None, to_user=None):
-    bubble = FlexMessage(
-        alt_text="請先詳閱票速通服務條款",
-        contents={
-            "type": "bubble",
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": "請先詳閱《票速通服務條款》",
-                        "weight": "bold",
-                        "size": "md",
-                        "margin": "md"
+def _send_terms(line_bot_api, reply_token: str | None = None, to_user: str | None = None) -> None:
+    """
+    傳送「服務條款 Bubble」：
+    - 如果提供 reply_token → 用 reply_message
+    - 如果提供 to_user     → 用 push_message
+    二擇一；皆為 None 時不動作。
+    """
+    # 1. 先用 dict 定義 Bubble 結構
+    bubble_dict = {
+        "type": "bubble",
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "請先詳閱《票速通服務條款》",
+                    "weight": "bold",
+                    "size": "md",
+                    "margin": "md"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "uri",
+                        "label": "開啟 PDF",
+                        "uri": TOS_PDF_URL
                     },
-                    {
-                        "type": "button",
-                        "action": {
-                            "type": "uri",
-                            "label": "開啟 PDF",
-                            "uri": TOS_PDF_URL
-                        },
-                        "style": "primary",
-                        "color": "#00A4C1"
-                    }
-                ]
-            },
-            "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "button",
-                        "action": {
-                            "type": "message",
-                            "label": "✅ 我同意",
-                            "text": TOS_CONFIRM_TEXT
-                        },
-                        "style": "primary"
-                    }
-                ]
-            }
+                    "style": "primary",
+                    "color": "#00A4C1"
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "✅ 我同意",
+                        "text": TOS_CONFIRM_TEXT
+                    },
+                    "style": "primary"
+                }
+            ]
         }
+    }
+
+    # 2. 轉成 FlexContainer，包成 FlexMessage
+    bubble_msg = FlexMessage(
+        alt_text="請先詳閱票速通服務條款",
+        contents=FlexContainer.from_dict(bubble_dict)
     )
 
+    # 3. 送出 (reply 優先，否則 push)
     if reply_token:
         line_bot_api.reply_message(
-            ReplyMessageRequest(reply_token=reply_token, messages=[bubble])
+            ReplyMessageRequest(reply_token=reply_token, messages=[bubble_msg])
         )
     elif to_user:
         line_bot_api.push_message(
-            PushMessageRequest(to=to_user, messages=[bubble])
+            PushMessageRequest(to=to_user, messages=[bubble_msg])
         )
-
 # ─────────────────────────────────────────────
 # FollowEvent：新好友先送條款
 # ─────────────────────────────────────────────
