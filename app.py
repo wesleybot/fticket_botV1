@@ -41,12 +41,22 @@ TOS_PDF_URL      = "https://fticket-botv1.onrender.com/static/tos_privacy_v1.pdf
 TOS_CONFIRM_TEXT = f"我同意票速通條款{TOS_VERSION}"
 
 # ────────────────────────────
-# 關鍵字回應（簡化示例）
+# 關鍵字回應
 # ────────────────────────────
 KEYWORD_REPLIES = {
     "[!!!]售票規則是甚麼？": "【@票速通 售票規則】 …",
     "[!!!]高鐵票搶票":      "【@票速通 高鐵訂票委託單】 …",
-    "[!!!]演唱會代操":      "😍 目前可預約 2025 演唱會如下： …",
+    "[!!!]演唱會代操": (
+        "😍 目前可預約 2025 演唱會如下：😍\n"
+        "➣ TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG\n"
+        "➣ 台新銀行周興哲 Odyssey 旅程巡迴演唱會 臺北返場\n"
+        "➣ 家家 月部落 Fly to the moon 你給我的月不落現場\n"
+        "➣ 伍佰 Wu Bai & China Blue Rock Star 2 in 高雄\n"
+        "➣ 鄧紫棋 演唱會\n"
+        "➣ 蔡依林 演唱會（預計年底）\n\n"
+        "✓ 搶票成功後才收代操費（全網最低價！）\n"
+        "請點『填寫預訂單』並輸入委託資訊，小助手將回覆。"
+    ),
 }
 
 # ────────────────────────────
@@ -107,8 +117,7 @@ def create_bubble(title, date, location, price, system,
 
 CONCERT_BUBBLES = [
     create_bubble("TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG",
-                  "Coming soon…", "Coming soon…", "Coming soon…",
-                  "Coming soon…",
+                  "Coming soon…", "Coming soon…", "Coming soon…", "Coming soon…",
                   "https://img9.uploadhouse.com/fileuploads/32011/32011699f3f6ed545f4c10e2c725a17104ab2e9c.png",
                   "TWICE", "HOT🔥"),
     create_bubble("台新銀行周興哲 Odyssey 旅程巡迴演唱會 臺北返場",
@@ -139,7 +148,7 @@ def callback():
     return "OK"
 
 # ────────────────────────────
-# 條款 Bubble (reply)
+# 條款 Bubble
 # ────────────────────────────
 def _send_terms(api: MessagingApi, reply_token: str):
     bubble = {
@@ -186,12 +195,26 @@ def handle_message(event: MessageEvent):
                 _send_terms(api, event.reply_token)
             return
 
-        # ② 關鍵字
+        # ② 指令：演唱會代操（文字 + Carousel）
+        if text == "[!!!]演唱會代操":
+            carousel = FlexContainer.from_dict({
+                "type": "carousel", "contents": CONCERT_BUBBLES})
+            messages = [
+                TextMessage(text=KEYWORD_REPLIES[text]),
+                FlexMessage(
+                    alt_text="演唱會節目資訊，歡迎私訊預訂！",
+                    contents=carousel)
+            ]
+            api.reply_message(ReplyMessageRequest(
+                reply_token=event.reply_token, messages=messages))
+            return
+
+        # ③ 其他關鍵字
         if text in KEYWORD_REPLIES:
             _safe_reply(api, event.reply_token, KEYWORD_REPLIES[text])
             return
 
-        # ③ 預訂
+        # ④ 預訂
         if text.startswith("我要預訂："):
             if uid in submitted_users:
                 _safe_reply(api, event.reply_token, "⚠️ 您已填寫過訂單，如需修改請聯絡客服。")
@@ -199,15 +222,6 @@ def handle_message(event: MessageEvent):
                 submitted_users.add(uid)
                 _safe_reply(api, event.reply_token,
                             "請填寫以下訂單資訊：\n演唱會節目：\n演唱會日期：\n票價：\n張數（上限四張）：")
-            return
-
-        # ④ 演唱會代操清單
-        if text == "[!!!]演唱會代操":
-            carousel = {"type": "carousel", "contents": CONCERT_BUBBLES}
-            _safe_reply(api, event.reply_token,
-                        FlexMessage(
-                            alt_text="演唱會節目資訊，歡迎私訊預訂！",
-                            contents=FlexContainer.from_dict(carousel)))
             return
 
         # ⑤ 自動回覆切換
@@ -220,7 +234,7 @@ def handle_message(event: MessageEvent):
             _safe_reply(api, event.reply_token, "🛑 自動回應已關閉")
             return
 
-        # ⑥ 自動回覆內容
+        # ⑥ 自動回覆
         if auto_reply:
             _safe_reply(api, event.reply_token, "[@票速通 通知您] 小編暫時不在，請留言稍候回覆。")
 
