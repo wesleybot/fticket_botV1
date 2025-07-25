@@ -1,4 +1,4 @@
-linebot-sdk>=3.0.0
+line-bot-sdk>=3.0.0
 aenum==3.1.15
 aiohappyeyeballs==2.6.1
 aiohttp==3.11.14
