@@ -9,9 +9,10 @@ from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.messaging import (
     Configuration, ApiClient, MessagingApi,
     ReplyMessageRequest, TextMessage,
-    FlexMessage, FlexContainer,
-    QuickReply, QuickReplyButton, MessageAction
+    FlexMessage, FlexContainer
 )
+# 正確的 QuickReply 類別路徑
+from linebot.v3.messaging.models import QuickReply, QuickReplyButton, MessageAction
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
 
 # ────────────────────────────
@@ -71,27 +72,18 @@ auto_reply = False
 KEYWORD_REPLIES = {
     "[!!!]售票規則是甚麼？": (
         "【@票速通 售票規則】\n"
-        "🍀🍀🍀本官方成立初心「幫追星人買到演唱會門票」一律以「誠信」為主🍀🍀🍀\n\n"
-        "若您想詢問演唱會場次，請按選單【演唱會代操搶票登記】。\n"
-        "若有其他問題，歡迎洽詢客服。\n\n"
-        "〖常見Q&A〗\n"
-        "Q：代操費用怎麼算？\n"
-        "A：所有代操費用以「一筆委託」計算，不另加價。\n"
-        "Q：付款方式？\n"
-        "A：LINE Pay、街口支付、一卡通、支付寶等。\n"
-        "Q：如何證明？\n"
-        "A：提供訂單截圖與手寫驗證時間。\n"
-        "Q：取票方式？\n"
-        "A：依主辦規定，可委託保管。"
+        "🍀 本官方以「誠信」為本，詳情請見以下說明：\n\n"
+        "Q：代操費用？\nA：一筆委託計算，不額外加價。\n\n"
+        "Q：支付方式？\nA：LINE Pay、街口、一卡通、支付寶等。\n\n"
+        "Q：如何證明？\nA：提供訂單截圖與手寫時間。\n"
     ),
     "[!!!]演唱會代操": (
         "😍 可預約 2025 演唱會：\n"
-        "➣ 11/22 TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG\n"
+        "➣ 11/22 TWICE 世界巡迴 PART1 in 高雄\n"
         "➣ 9/26-28 周興哲 Odyssey 臺北返場\n"
         "➣ 9/27 家家 Fly to the moon\n"
         "➣ 11/22-23 伍佰 Rock Star 2 in 高雄\n\n"
-        "✓ 搶票成功才收費，全網最低價！\n"
-        "請點選「演唱會代操」並按「填寫預訂單」。"
+        "✓ 搶票成功才收費，全網最低價！點「填寫預訂單」開始。"
     ),
 }
 
@@ -108,40 +100,40 @@ def create_bubble(title, date, location, price, system,
                   image_url, artist_keyword, badge_text="NEW"):
     return {
         "type": "bubble",
-        "header": {"type": "box", "layout": "vertical", "contents": [
-            {"type": "box", "layout": "horizontal", "contents": [
-                {"type": "image", "url": image_url, "size": "full", "aspectMode": "cover", "aspectRatio": "30:25", "flex": 1},
-                {"type": "box", "layout": "horizontal", "position": "absolute",
-                 "offsetStart": "18px", "offsetTop": "18px", "width": "72px", "height": "28px",
-                 "backgroundColor": "#EC3D44", "cornerRadius": "100px", "paddingAll": "2px",
-                 "contents": [{"type": "text", "text": badge_text, "size": "xs", "color": "#ffffff", "align": "center", "gravity": "center"}]}
+        "header": {"type":"box","layout":"vertical","contents":[
+            {"type":"box","layout":"horizontal","contents":[
+                {"type":"image","url":image_url,"size":"full","aspectMode":"cover","aspectRatio":"30:25","flex":1},
+                {"type":"box","layout":"horizontal","position":"absolute",
+                 "offsetStart":"18px","offsetTop":"18px","width":"72px","height":"28px",
+                 "backgroundColor":"#EC3D44","cornerRadius":"100px","paddingAll":"2px",
+                 "contents":[{"type":"text","text":badge_text,"size":"xs","color":"#ffffff","align":"center","gravity":"center"}]}
             ]}
-        ], "paddingAll": "0px"},
-        "body": {"type": "box", "layout": "vertical", "spacing": "sm", "contents": [
-            {"type": "text", "text": title, "wrap": True, "weight": "bold", "gravity": "center", "size": "xl"},
-            {"type": "box", "layout": "vertical", "spacing": "sm", "contents": [
+        ],"paddingAll":"0px"},
+        "body":{"type":"box","layout":"vertical","spacing":"sm","contents":[
+            {"type":"text","text":title,"wrap":True,"weight":"bold","gravity":"center","size":"xl"},
+            {"type":"box","layout":"vertical","spacing":"sm","contents":[
                 _one_row("日期", date),
                 _one_row("地點", location),
                 _one_row("票價", price),
                 _one_row("系統", system),
             ]}
         ]},
-        "footer": {"type": "box", "layout": "vertical", "spacing": "sm", "contents": [
-            {"type": "button", "action": {"type": "message", "label": "填寫預訂單", "text": f"我要預訂：{artist_keyword}"},
-             "style": "primary", "color": "#00A4C1"}
+        "footer":{"type":"box","layout":"vertical","spacing":"sm","contents":[
+            {"type":"button","action":{"type":"message","label":"填寫預訂單","text":f"我要預訂：{artist_keyword}"},
+             "style":"primary","color":"#00A4C1"}
         ]}
     }
 
 CONCERT_BUBBLES = [
     create_bubble("TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG",
-                  "Coming soon…", "Coming soon…", "—", "—",
-                  "https://img9.uploadhouse.com/...TWICE.png", "TWICE"),
+                  "Coming soon…","—","—","—",
+                  "https://img9.uploadhouse.com/...TWICE.png","TWICE"),
     create_bubble("周興哲 Odyssey 臺北返場",
-                  "2025/9/26–28 19:30", "臺北小巨蛋", "—", "KKTIX",
-                  "https://img7.uploadhouse.com/...Zhou.png", "周興哲"),
+                  "2025/9/26–28","臺北小巨蛋","—","KKTIX",
+                  "https://img7.uploadhouse.com/...Zhou.png","周興哲"),
     create_bubble("家家 Fly to the moon",
-                  "9/27 19:00", "Legacy Taipei", "—", "拓元售票",
-                  "https://img4.uploadhouse.com/...JiaJia.png", "家家"),
+                  "9/27","Legacy Taipei","—","拓元售票",
+                  "https://img4.uploadhouse.com/...JiaJia.png","家家"),
 ]
 
 # ────────────────────────────
@@ -164,18 +156,16 @@ def _send_terms(api: MessagingApi, reply_token: str):
     bubble = {
         "type": "bubble",
         "body": {
-            "type": "box", "layout": "vertical", "spacing": "sm",
-            "contents": [
-                {"type": "text", "text": "請先詳閱《票速通服務條款》，同意後才能繼續",
-                 "weight": "bold", "size": "md"},
-                {"type": "button", "action": {"type": "uri", "label": "查看條款PDF", "uri": TOS_PDF_URL},
-                 "style": "primary", "color": "#00A4C1"}
+            "type":"box","layout":"vertical","spacing":"sm",
+            "contents":[
+                {"type":"text","text":"請先詳閱《票速通服務條款》，同意後才能繼續","weight":"bold","size":"md"},
+                {"type":"button","action":{"type":"uri","label":"查看條款PDF","uri":TOS_PDF_URL},
+                 "style":"primary","color":"#00A4C1"}
             ]
         },
-        "footer": {
-            "type": "box", "layout": "vertical", "contents": [
-                {"type": "button", "action": {"type": "message", "label": "✅ 我同意", "text": TOS_CONFIRM_TEXT},
-                 "style": "primary"}
+        "footer":{
+            "type":"box","layout":"vertical","contents":[
+                {"type":"button","action":{"type":"message","label":"✅ 我同意","text":TOS_CONFIRM_TEXT},"style":"primary"}
             ]
         }
     }
@@ -206,7 +196,7 @@ def handle_message(event: MessageEvent):
 
         # 演唱會代操
         if text == "[!!!]演唱會代操":
-            carousel = FlexContainer.from_dict({"type": "carousel", "contents": CONCERT_BUBBLES})
+            carousel = FlexContainer.from_dict({"type":"carousel","contents":CONCERT_BUBBLES})
             api.reply_message(ReplyMessageRequest(
                 reply_token=event.reply_token,
                 messages=[
@@ -230,22 +220,22 @@ def handle_message(event: MessageEvent):
             api.reply_message(ReplyMessageRequest(reply_token=event.reply_token, messages=[msg]))
             return
 
-        # 教學選項回覆
+        # 教學選項
         if text == "教學：常見Q&A":
             _safe_reply(api, event.reply_token,
                         "🧾 常見Q&A：\nQ：代操費用？\nA：只收服務費，不加價。\nQ：付款方式？\nA：LINE Pay／街口等。\nQ：如何證明？\nA：訂單截圖+手寫時間。")
             return
         if text == "教學：預約演唱會":
             _safe_reply(api, event.reply_token,
-                        "🎟️ 請於「演唱會代操」中點「填寫預訂單」，範例：\n「我要預訂：TWICE」")
+                        "🎟️ 請於「演唱會代操」點「填寫預訂單」，範例：「我要預訂：TWICE」")
             return
         if text == "教學：集點卡":
             _safe_reply(api, event.reply_token,
-                        "💳 集點卡：每筆代操累一點，3 點可兌 50 元。")
+                        "💳 集點卡：每筆代操累一點，3 點兌 50 元。")
             return
         if text == "教學：完成":
             _safe_reply(api, event.reply_token,
-                        "🎉 完成教學！如有問題隨時詢客服。")
+                        "🎉 已完成教學！隨時詢客服。")
             return
 
         # 其他關鍵字
@@ -264,10 +254,10 @@ def handle_message(event: MessageEvent):
             else:
                 submitted_users.add(uid)
                 _safe_reply(api, event.reply_token,
-                            "請填寫以下訂單資訊：\n演唱會節目：\n演唱會日期：\n票價：\n張數（上限四張）：")
+                            "請填寫：\n演唱會：\n日期：\n票價：\n張數（上限4張）：")
             return
 
-        # 系統開關自動回覆
+        # 系統自動回覆切換
         if text == "[系統]開啟自動回應" and uid in manager_user_ids:
             auto_reply = True
             _safe_reply(api, event.reply_token, "✅ 自動回應已開啟")
