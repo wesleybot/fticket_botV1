@@ -294,13 +294,13 @@ def handle_message(event: MessageEvent):
                 ]},
                 "footer": {"type": "box", "layout": "vertical", "spacing": "sm", "contents": [
                     {"type": "button", "action": {"type": "message",
-                                                  "label": "常見Q&A", "text": "常見問題Q&A"}, "style": "primary"},
+                                                "label": "常見Q&A", "text": "常見問題Q&A"}, "style": "primary"},
                     {"type": "button", "action": {"type": "message",
-                                                  "label": "預約演唱會教學", "text": "怎麼預約演唱會？"}, "style": "primary"},
+                                                "label": "預約演唱會教學", "text": "怎麼預約演唱會？"}, "style": "primary"},
                     {"type": "button", "action": {"type": "message",
-                                                  "label": "集點卡是什麼？", "text": "集點卡可以幹嘛？"}, "style": "primary"},
+                                                "label": "集點卡是什麼？", "text": "集點卡可以幹嘛？"}, "style": "primary"},
                     {"type": "button", "action": {"type": "message",
-                                                  "label": "我都學會了", "text": "我都會了！"}, "style": "primary"},
+                                                "label": "我都學會了", "text": "我都會了！"}, "style": "primary"},
                 ]}
             }
             api.reply_message(ReplyMessageRequest(
@@ -362,13 +362,16 @@ def handle_message(event: MessageEvent):
                         "《社會秩序維護法》第 64-2 條：僅針對「非供自用而加價轉售」行為裁處，純手續費模式不適用；\n《文化創意產業發展法》第 10-1 條第 2 款：禁止「超過票面金額販售」，此處並無此情形。」"
                     )
             return
+        
         if text == "怎麼預約演唱會？":
             _safe_reply(api, event.reply_token,
-                        "🎟️ 請在「演唱會代操」點「填寫預訂單」，如「我要預訂：TWICE」")
+                        "🎟️ 請在「演唱會代操」點「填寫預訂單」，並以詳閱《票速通服務條款》同意條款後，即可開始使用預約服務。\n如「我要預訂：TWICE」")
             return
+        
         if text == "集點卡可以幹嘛？":
-            _safe_reply(api, event.reply_token, "💳 集點卡：累 1 點，3 點兌 50 元。")
+            _safe_reply(api, event.reply_token, "💳 集點卡：若您有成功完成一筆訂單，將給予乙章。")
             return
+        
         if text == "我都會了！":
             _safe_reply(api, event.reply_token, "🎉 已完成教學，有問題再聯絡客服！")
             return
