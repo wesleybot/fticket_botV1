@@ -150,9 +150,9 @@ CONCERT_BUBBLES = [
     create_bubble(
                 "TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG",
                 "2025/11/22（六）", 
-                "Comimg soon...",
-                "Comimg soon...",
-                "Comimg soon...",
+                "高雄國家體育場",
+                "NT$ 8,800 / 6,800 / 5,800 / 4,800 / 3,800 / 2,800 / 1,800",
+                "拓元售票系統",
                 "https://img9.uploadhouse.com/fileuploads/32011/32011699f3f6ed545f4c10e2c725a17104ab2e9c.png",
                 "TWICE",
                 badge_text="HOT🔥"
