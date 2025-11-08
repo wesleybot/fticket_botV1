@@ -172,7 +172,7 @@ CONCERT_BUBBLES = [
                 "台北大巨蛋",
                 "Comimg soon...",
                 "Comimg soon...",
-                "https://img4.uploadhouse.com/fileuploads/32041/32041604c5fee787f6b7ec43d0d3fe8991ae995d.png",
+                "https://img6.uploadhouse.com/fileuploads/32225/32225496ec7d0a98c1d523af28d58db24591a05b.png",
                 "TWICE",
                 badge_text="即將來🔥"
             ),
