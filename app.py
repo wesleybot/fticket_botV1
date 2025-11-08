@@ -89,12 +89,11 @@ KEYWORD_REPLIES = {
     ),
     "[!!!]演唱會代操": (
         "目前可預約 2025 演唱會：\n"
-        "➣ 11/22 TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG\n"
-        "➣ 9/27 家家 Fly to the moon\n"
-        "➣ 11/1-2 G-Dragon《Übermensch》IN 大巨蛋演唱會\n"
-        "➣ 11/22-23 國泰世華銀行\n伍佰 ＆ China Blue Rock Star2演唱會-高雄站\n"
-        "➣ 鄧紫棋演唱會\n"
-        "➣ 蔡依林演唱會\n\n"
+        "➣ JOLIN蔡依林 PLEASURE世界巡迴演唱會 TAIPEI 2025-2026\n"
+        "➣ BABYMONSTER 寶怪演唱會\n"
+        "➣ 鄧紫棋 演唱會（預計明年3-4月）\n"
+        "➣ TWICE台北大巨蛋2026演唱會－3/21 (六) \n"
+
         "✓ 一切費用，都是等到有確實「完成您所委託的票券」才進行付款。全網最低價！請點下方「演唱會代購購票」開始。"
     ),
 }
@@ -148,43 +147,33 @@ def create_bubble(title, date, location, price, system,
 
 CONCERT_BUBBLES = [
     create_bubble(
-                "TWICE THIS IS FOR WORLD TOUR PART1 IN KAOHSIUNG",
-                "2025/11/22（六）", 
-                "高雄國家體育場",
-                "NT$ 8,800 / 6,800 / 5,800 / 4,800 / 3,800 / 2,800 / 1,800",
-                "拓元售票系統",
-                "https://img9.uploadhouse.com/fileuploads/32011/32011699f3f6ed545f4c10e2c725a17104ab2e9c.png",
-                "TWICE",
+                "JOLIN蔡依林 PLEASURE世界巡迴演唱會 TAIPEI 2025-2026",
+                "2025/12/30-2026/01/01 PM19:30", 
+                "臺北大巨蛋",
+                "NT$6,990 / NT$5,990 / NT$4,990 / NT$3,990 / NT$2,990 / NT$990",
+                "KKTIX",
+                "https://img3.uploadhouse.com/fileuploads/32225/322254936c4243b09130acb1a7fcb502bc0fe8fc.png",
+                "蔡依林",
                 badge_text="HOT🔥"
             ),
     create_bubble(
-                "家家 月部落 Fly to the moon 你給我的月不落現場",
-                "9.27 Sat. 19:00", 
-                "Legacy Taipei 音樂展演空間",
-                "NT. 1800（全區座席）/ NT. 900（身障席）",
-                "拓元售票系統",
+                "BABYMONSTER ”LOVE MONSTERS” ASIA FAN CONCERT 台北站",
+                "2026/01/02-2026/01/03", 
+                "台北小巨蛋",
+                "NT$6500 / $5600 / $4800 / $4200 / $3200 / $2200 / $800",
+                "KKTIX",
+                "https://img4.uploadhouse.com/fileuploads/32225/32225494d10d343829f0d59bcc5a3f9be95b4c3c.png",
+                "BABYMONSTER",
+                badge_text="HOT🔥"
+            ),
+    create_bubble(
+                "2026 TWICE <THIS IS FOR> WORLD TOUR",
+                "2026/03/21 (六)", 
+                "台北大巨蛋",
+                "Comimg soon...",
+                "Comimg soon...",
                 "https://img4.uploadhouse.com/fileuploads/32041/32041604c5fee787f6b7ec43d0d3fe8991ae995d.png",
-                "家家",
-                badge_text="HOT🔥"
-            ),
-    create_bubble(
-                "國泰世華銀行\n伍佰 ＆ China Blue Rock Star2演唱會-高雄站",
-                "11.22 (六) 19:30\n11.23 (日) 19:00", 
-                "高雄巨蛋",
-                "800/1800/2800/3200/3800/4200(實名制抽選/全座席)",
-                "拓元售票系統",
-                "https://img5.uploadhouse.com/fileuploads/31934/319346856d24e3358b522bc1d8aa65825c41d420.png",
-                "伍佰",
-                badge_text="HOT🔥"
-            ),
-    create_bubble(
-                "G-Dragon《Übermensch》IN 大巨蛋演唱會",
-                "2025/11/1、2025/11/2 （暫定）", 
-                "台北大巨蛋（暫定）",
-                "Comimg soon...",
-                "Comimg soon...",
-                "https://img4.uploadhouse.com/fileuploads/32056/320564443116af1e32d4e7f88b5945bff73aa8ca.png",
-                "GD",
+                "TWICE",
                 badge_text="即將來🔥"
             ),
     create_bubble(
@@ -195,16 +184,6 @@ CONCERT_BUBBLES = [
                 "Comimg soon...",
                 "https://img1.uploadhouse.com/fileuploads/31980/31980371b9850a14e08ec5f39c646f7b5068e008.png",
                 "鄧紫棋",
-                badge_text="即將來🔥"
-            ),
-    create_bubble(
-                "蔡依林演唱會", 
-                "Comimg soon...", 
-                "Comimg soon...", 
-                "Coming soon...", 
-                "Comimg soon...", 
-                "https://img7.uploadhouse.com/fileuploads/31934/319347074ebade93a4a6310dec72f08996dc2af1.png", 
-                "蔡依林",
                 badge_text="即將來🔥"
             )
 ]
